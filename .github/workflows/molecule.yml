@@ -30,7 +30,7 @@ jobs:
     
       - name: Install Ansible Molecule.
         run: |
-          pip3 install --user molecule molecule-plugins[podman] ansible-core 
+          pip3 install molecule molecule-plugins[podman] ansible-core 
 
       - name: Check out the codebase.
         uses: actions/checkout@v3
