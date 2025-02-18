@@ -37,6 +37,7 @@ jobs:
 
       - name: Get Ansible Molecule version.
         run: |
+          echo $PATH $VIRTUAL_ENV
           molecule --version
 
       - name: Run Ansible Molecule.
