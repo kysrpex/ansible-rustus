@@ -37,10 +37,10 @@ jobs:
 
       - name: Get Ansible Molecule version.
         run: |
-          molecule --version
+          python -m molecule --version
 
       - name: Run Ansible Molecule.
         run: |
-          molecule --base-config molecule/base.yml test --scenario-name ${{ matrix.scenario }}
+          python -m molecule --base-config molecule/base.yml test --scenario-name ${{ matrix.scenario }}
         env:
           ANSIBLE_FORCE_COLOR: '1'
