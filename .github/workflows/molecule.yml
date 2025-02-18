@@ -32,8 +32,14 @@ jobs:
         run: |
           pip3 install molecule molecule-plugins[podman] ansible-core 
 
+
+
       - name: Check out the codebase.
         uses: actions/checkout@v3
+
+      - name: Get Ansible Molecule version.
+        run: |
+          molecule --version
 
       - name: Run Ansible Molecule.
         run: |
