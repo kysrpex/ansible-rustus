@@ -20,6 +20,9 @@ jobs:
           - latest
           - systemd
     steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v3
+
       - name: Create and activate virtual environment
         # Ansible Molecule won't run without this writable virtual environment
         run: |
@@ -31,9 +34,6 @@ jobs:
       - name: Install Ansible Molecule.
         run: |
           python -m pip install molecule molecule-plugins[podman] ansible-core 
-
-      - name: Check out the codebase.
-        uses: actions/checkout@v3
 
       - name: Get Ansible Molecule version.
         run: |
