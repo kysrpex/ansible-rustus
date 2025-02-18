@@ -23,14 +23,14 @@ jobs:
       - name: Create and activate virtual environment
         # Ansible Molecule won't run without this writable virtual environment
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          echo "VIRTUAL_ENV=$(pwd)/venv" >> $GITHUB_ENV  # Set VIRTUAL_ENV as an environment variable
-          echo "PATH=$VIRTUAL_ENV/bin:$PATH" >> $GITHUB_ENV  # Add venv's bin to PATH         
+          python -m venv .venv
+          source .venv/bin/activate
+          echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
+          echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
     
       - name: Install Ansible Molecule.
         run: |
-          pip install molecule molecule-plugins[podman] ansible-core 
+          python -m pip install molecule molecule-plugins[podman] ansible-core 
 
       - name: Check out the codebase.
         uses: actions/checkout@v3
