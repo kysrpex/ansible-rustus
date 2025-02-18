@@ -25,22 +25,22 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-          echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/venv" >> $GITHUB_ENV
-          echo "$GITHUB_WORKSPACE/venv/bin" >> $GITHUB_PATH
+          echo "VIRTUAL_ENV=$(pwd)/venv" >> $GITHUB_ENV  # Set VIRTUAL_ENV as an environment variable
+          echo "PATH=$VIRTUAL_ENV/bin:$PATH" >> $GITHUB_ENV  # Add venv's bin to PATH         
     
       - name: Install Ansible Molecule.
         run: |
-          python -m pip install molecule molecule-plugins[podman] ansible-core 
+          pip install molecule molecule-plugins[podman] ansible-core 
 
       - name: Check out the codebase.
         uses: actions/checkout@v3
 
       - name: Get Ansible Molecule version.
         run: |
-          python -m molecule --version
+          molecule --version
 
       - name: Run Ansible Molecule.
         run: |
-          python -m molecule --base-config molecule/base.yml test --scenario-name ${{ matrix.scenario }}
+          molecule --base-config molecule/base.yml test --scenario-name ${{ matrix.scenario }}
         env:
           ANSIBLE_FORCE_COLOR: '1'
