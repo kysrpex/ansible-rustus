@@ -20,6 +20,14 @@ jobs:
           - latest
           - systemd
     steps:
+      - name: Create and activate virtual environment
+        # Ansible Molecule won't run without this writable virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/venv" >> $GITHUB_ENV
+          echo "$GITHUB_WORKSPACE/venv/bin" >> $GITHUB_PATH
+    
       - name: Install Ansible Molecule.
         run: |
           pip3 install --user molecule molecule-plugins[podman] ansible-core 
