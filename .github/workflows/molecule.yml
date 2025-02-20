@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Ansible Molecule.
         run: |
-          pip install molecule molecule-plugins[podman] ansible-core
+          pip install molecule molecule-plugins[podman] ansible-core 
 
       - name: Get Ansible Molecule version.
         run: |
